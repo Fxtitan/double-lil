@@ -33,17 +33,10 @@ const Lil = () => {
       if (this.head === null) {
         this.head = newNode;
         this.tail = newNode;
-
-        return;
-      }
-      
-      let current = this.head;
-
-      while (current.next !== null) {
-        current = current.next
-      }
-
-      current.next = newNode;
+      }else if (this.head){
+        this.head.next = newNode;
+      this.tail.next = newNode;
+    }
     },
 
     removeFromStart: function() {
@@ -56,8 +49,8 @@ const Lil = () => {
     removeFromEnd: function() {
       let current = this.head;
 
-      while (current.next.next !== null) {
-        current = current.next
+      if(current.next.next !== null) {
+        current = current.next.pop()
       }
 
       const toBeRemoved = current.next.value;
